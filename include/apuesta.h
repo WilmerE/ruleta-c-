@@ -4,15 +4,26 @@
 
 #include "jugador.h" // Para asociar la apuesta a un jugador
 
+enum TipoApuesta {
+    PLENO,
+    COLOR,
+    PARIDAD,
+    MITAD,
+    COLUMNA,
+    DOCENA,
+    CERO
+};
+
 // Clase que representa una apuesta realizada por un jugador a un número
 class Apuesta {
 private:
 	Jugador* jugador; // Puntero al jugador que realiza la apuesta
 	int cantidad;     // Monto apostado
-	int numero;       // Número al que se apuesta
+	TipoApuesta tipo;
+    int valor;  // depende del tipo (ej: número exacto, 0=rojo 1=negro, etc.)
 public:
 	// Constructor: inicializa los atributos
-	Apuesta(Jugador* j, int c, int n) : jugador(j), cantidad(c), numero(n) {}
+	Apuesta(Jugador* j, int c, TipoApuesta t, int v) : jugador(j), cantidad(c), tipo(t), valor(v) {}
 
 	// Devuelve el jugador asociado
 	Jugador* getJugador();
@@ -20,14 +31,17 @@ public:
 	// Devuelve la cantidad apostada
 	int getCantidad();
 
-	// Devuelve el número apostado
-	int getNumero();
+	// Devuelve el tipo de apuesta
+	TipoApuesta getTipo();
+
+	// Devuelve el valor de la apuesta
+	int getValor();
 
 	// Modifica la cantidad apostada
 	void setCantidad(int c);
 
-	// Modifica el número apostado
-	void setNumero(int n);
+	// Modifica el valor apostado
+	void setValor(int v);
 
     // Muestra la información de la apuesta
     virtual void mostrar() const;

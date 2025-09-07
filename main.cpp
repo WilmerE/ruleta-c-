@@ -91,7 +91,7 @@ int main() {
             // Registrar una apuesta
             // Actualmente solo permite apuestas a un número específico
             // Hacen falta más tipos de apuestas: color, par/impar, docena, columna, etc...
-            int idx, cantidad, numero;
+            int idx, cantidad, tipo, valor;
             cout << "Jugadores disponibles:\n";
             for (size_t i = 0; i < jugadores.size(); ++i) {
                 cout << i << ": " << jugadores[i].getNombre() << endl;
@@ -104,16 +104,77 @@ int main() {
             }
             cout << "Monto a apostar: ";
             cin >> cantidad;
-            cout << "Número (0-36): ";
-            cin >> numero;
 
-            if (numero < 0 || numero > 36) {
-                cout << "Número inválido." << endl;
-                continue;
+            cout << "\nTipo de apuesta:\n";
+            cout << "1. Pleno (número exacto)\n";
+            cout << "2. Color (0=Rojo, 1=Negro)\n";
+            cout << "3. Par/Impar (0=Par, 1=Impar)\n";
+            cout << "4. Mitad (0=1–18, 1=19–36)\n";
+            cout << "5. Columna (0=1ra, 1=2da, 2=3ra)\n";
+            cout << "6. Docena (0=1–12, 1=13–24, 2=25–36)\n";
+            cout << "7. Cero (0)\n";
+            cout << "Seleccione: ";
+            cin >> tipo;
+
+            if (tipo == 1) {
+                cout << "Número (0–36): ";
+                cin >> valor;
+                if (valor < 0 || valor > 36) {
+                    cout << "Número inválido." << endl;
+                    continue;
+                }
+                if (jugadores[idx].apostar(cantidad)) {
+                    ruleta.agregarApuesta(Apuesta(&jugadores[idx], cantidad, PLENO, valor));
+                }
             }
-
-            if (jugadores[idx].apostar(cantidad)) {
-                ruleta.agregarApuesta(Apuesta(&jugadores[idx], cantidad, numero));
+            else if (tipo == 2) {
+                cout << "Color (0=Rojo, 1=Negro): ";
+                cin >> valor;
+                if (valor != 0 && valor != 1) { cout << "Color inválido."; continue; }
+                if (jugadores[idx].apostar(cantidad)) {
+                    ruleta.agregarApuesta(Apuesta(&jugadores[idx], cantidad, COLOR, valor));
+                }
+            }
+            else if (tipo == 3) {
+                cout << "Paridad (0=Par, 1=Impar): ";
+                cin >> valor;
+                if (valor != 0 && valor != 1) { cout << "Valor inválido."; continue; }
+                if (jugadores[idx].apostar(cantidad)) {
+                    ruleta.agregarApuesta(Apuesta(&jugadores[idx], cantidad, PARIDAD, valor));
+                }
+            }
+            else if (tipo == 4) {
+                cout << "Mitad (0=1–18, 1=19–36): ";
+                cin >> valor;
+                if (valor != 0 && valor != 1) { cout << "Valor inválido."; continue; }
+                if (jugadores[idx].apostar(cantidad)) {
+                    ruleta.agregarApuesta(Apuesta(&jugadores[idx], cantidad, MITAD, valor));
+                }
+            }
+            else if (tipo == 5) {
+                cout << "Columna (0=1ra, 1=2da, 2=3ra): ";
+                cin >> valor;
+                if (valor < 0 || valor > 2) { cout << "Columna inválida."; continue; }
+                if (jugadores[idx].apostar(cantidad)) {
+                    ruleta.agregarApuesta(Apuesta(&jugadores[idx], cantidad, COLUMNA, valor));
+                }
+            }
+            else if (tipo == 6) {
+                cout << "Docena (0=1–12, 1=13–24, 2=25–36): ";
+                cin >> valor;
+                if (valor < 0 || valor > 2) { cout << "Docena inválida."; continue; }
+                if (jugadores[idx].apostar(cantidad)) {
+                    ruleta.agregarApuesta(Apuesta(&jugadores[idx], cantidad, DOCENA, valor));
+                }
+            }
+            else if (tipo == 7) {
+                valor = 0;
+                if (jugadores[idx].apostar(cantidad)) {
+                    ruleta.agregarApuesta(Apuesta(&jugadores[idx], cantidad, CERO, valor));
+                }
+            }
+            else {
+                cout << "Opción inválida." << endl;
             }
             // system("pause"); --- IGNORE ---
             cout << "\nPresione Enter para continuar...";
