@@ -1,5 +1,5 @@
 
-#include "ruleta.h"
+#include "../include/ruleta.h"
 #include <cstdlib> // Para rand() y srand()
 #include <ctime>   // Para time()
 #include <iostream>

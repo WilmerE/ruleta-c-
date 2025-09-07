@@ -1,5 +1,5 @@
 
-#include "apuesta.h"
+#include "../include/apuesta.h"
 #include <iostream>
 using namespace std;
 

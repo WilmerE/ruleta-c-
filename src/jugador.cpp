@@ -1,5 +1,5 @@
 
-#include "jugador.h"
+#include "../include/jugador.h"
 #include <iostream>
 using namespace std;
 

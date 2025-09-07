@@ -1,5 +1,5 @@
 
-#include "participante.h" // Incluye la definición de la clase Participante
+#include "../include/participante.h" // Incluye la definición de la clase Participante
 #include <iostream> // Para operaciones de entrada/salida
 using namespace std; // Facilita el uso de cout y endl
 

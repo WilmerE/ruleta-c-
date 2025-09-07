@@ -1,0 +1,3 @@
+/Users/p3l1co/Documents/C++/Ruleta/build/CMakeFiles/ruleta.dir
+/Users/p3l1co/Documents/C++/Ruleta/build/CMakeFiles/edit_cache.dir
+/Users/p3l1co/Documents/C++/Ruleta/build/CMakeFiles/rebuild_cache.dir
